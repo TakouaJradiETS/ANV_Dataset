@@ -2,13 +2,14 @@
     {
         "sample_id":"s_00", 
         "intent":["Print a concrete structure measuring 10×100×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "The delivery location is : Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC."],
         "requirement_model":
         {
-            "order_id": "order_01",
+            "order_id": "order_00",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
@@ -16,27 +17,54 @@
             "order_properties": {
                 "dimensions": {
                     "value": [10, 100, 2],
-                    "hollow": false,
+                    "hollow": "false",
                     "unit": "meters"
                 },
                 "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "<=2",
+                        "range": ">=0",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -53,17 +81,18 @@
     },
     {
         "sample_id":"s_01", 
-        "intent":["Print a hollow concrete structure measuring 10×100×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "intent":["Print a concrete house covering a footprint of 1,000 square meters and standing 2 meters tall.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within two days.",
         "The total cost must not exceed 2,000 euros.",
-        "The supplier must be located in Europe with a stability of at least 20%."],
+        "The supplier must be located in Europe with a delivery reliability of at least 90%."],
         "requirement_model":
         {
             "order_id": "order_01",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
@@ -71,24 +100,51 @@
             "order_properties": {
                 "dimensions": {
                     "value": [10, 100, 2],
-                    "hollow": true,
+                    "hollow": "true",
                     "unit": "meters"
                 },
                 "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "house",
                 "constraints": {
                     "printing_duration": {
                         "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "Europe",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=90%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
                         "range": "<=2000",
@@ -112,38 +168,66 @@
         "The deliver it to : Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within two days.",
-        "The total cost must not exceed 2,000 euros.",
-        "The supplier must be located in Europe with a stability of at least 20%."],
+        "The cost must not exceed 2,000 euros.",
+        "The supplier must be as near as possible."],
         "requirement_model":
         {
             "order_id": "order_02",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
+                    "value": [17, 230, 2],
+                    "hollow": "true",
                     "unit": "meters"
                 },
                 "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
                         "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "as near as possible",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
                         "range": "<=2000",
@@ -159,106 +243,77 @@
             }
        
         
-            }
+        }
     },
     {
         "sample_id":"s_03", 
-        "intent":["Print a hollow concrete structure with the following mesures: 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "intent":["Print a flat concrete structure measuring 17×230×2 meters.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
-        "The printing should be completed within 48 hours.",
-        "The total cost must be less than 2,000 euros.",
-        "I want a european supplier with stability of at least 20%."],
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe and provide material with a printability of 88%.",
+        "Ensure the lowest possible cost for this printing"],
         "requirement_model":
         {
             "order_id": "order_03",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
+                    "value": [17, 230, 2],
+                    "hollow": "false",
                     "unit": "meters"
                 },
                 "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
-
-            },
-            "intent": {
-                "constraints": {
-                    "printing_duration": {
-                        "range": "48",
-                        "unit": "hours"
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
                     },
-                    "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
-                    },
-                    "cost": {
-                        "range": "<=2000",
-                        "unit": "€"
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
                     }
                 },
-                "preferences": {
-                    "quality": 0.25,
-                    "cost": 0.25,
-                    "delivery": 0.25,
-                    "green": 0.25
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
                 }
-            }
-       
-        
-     
-        }
-    
-    },
-    {
-        "sample_id":"s_04", 
-        "intent":["Print a hollow concrete structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
-        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
-        "The printing must be completed within 2 days.",
-        "The supplier must be located in Europe with a stability of at least 20%.",
-        "Ensure the lowest possible cost for this printing"],
-        "requirement_model":
-        {
-            "order_id": "order_04",
-            "domain": "additive_manufacturing",
-            "goal": "OrderPlan",
-            "mode": "manual",
-            "trigger": {
-                "condition": "OrderSubmited"
-            },
-            "order_properties": {
-                "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
-                    "unit": "meters"
-                },
-                "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "2",
+                        "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "Europe",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=88%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -271,50 +326,76 @@
             }
        
         
-     
         }
-    
     },
     {
-        "sample_id":"s_05", 
+        "sample_id":"s_04", 
         "intent":["Print a high quality hollow concrete structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within 2 days.",
-        "The supplier must be located in Europe with a stability of at least 20%."],
+        "The supplier must be located in Europe."],
         "requirement_model":
         {
-            "order_id": "order_05",
+            "order_id": "order_04",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
+                    "value": [17, 230, 2],
+                    "hollow": "true",
                     "unit": "meters"
                 },
                 "material": "concrete",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "2",
+                        "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "Europe",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -327,51 +408,160 @@
             }
        
         
-     
         }
-    
+    },
+    {
+        "sample_id":"s_05", 
+        "intent":["Print a hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe",
+        "Use only recyclable materials"],
+        "requirement_model":
+        {
+            "order_id": "order_05",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17, 230, 2],
+                    "hollow": "true",
+                    "unit": "meters"
+                },
+                "material": "",
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
+
+            },
+            "intent": {
+                "object_type": "",
+                "constraints": {
+                    "printing_duration": {
+                        "range": "<=2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": true
+                    },
+                    "cost": {
+                        "range": ">=0",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.3,
+                    "cost": 0.1,
+                    "delivery": 0.1,
+                    "green": 0.5
+                }
+            }
+       
+        
+        }
     },
     {
         "sample_id":"s_06", 
-        "intent":["Print a hollow structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at  Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within 2 days.",
-        "The supplier must be located in Europe with a stability of at least 20%.",
+        "The supplier must be located in Europe.",
         "Use only recyclable materials"],
         "requirement_model":
         {
             "order_id": "order_06",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
+                    "value": [17, 230, 2],
+                    "hollow": "true",
                     "unit": "meters"
                 },
                 "material": "plastic",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "2",
+                        "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "Europe",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": true
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -382,106 +572,78 @@
                     "green": 0.5
                 }
             }
-           
+       
+        
         }
-    
     },
     {
         "sample_id":"s_07", 
-        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "intent":["Print a concrete hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within 2 days.",
-        "The supplier must be located in Europe with a stability of at least 20%.",
-        "Use only recyclable materials"],
+        "Ensure a good compromise between cost and quality of the printing"],
         "requirement_model":
         {
             "order_id": "order_07",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
+                    "value": [17, 230, 2],
+                    "hollow": "true",
                     "unit": "meters"
                 },
-                "material": "Plastic",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
-
-            },
-            "intent": {
-                "constraints": {
-                    "printing_duration": {
-                        "range": "2",
-                        "unit": "days"
+                "material": "concrete",
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
                     },
-                    "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
-                    },
-                    "cost": {
-                        "range": "<=2000",
-                        "unit": "€"
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
                     }
                 },
-                "preferences": {
-                    "quality": 0.3,
-                    "cost": 0.1,
-                    "delivery": 0.1,
-                    "green": 0.5
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
                 }
-            }
-        
-        }
-    
-    },
-    {
-        "sample_id":"s_08", 
-        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
-        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
-        "The printing must be completed within 2 days.",
-        "The supplier must be located in Europe with a stability of at least 20%.",
-        "Ensure a good compromise between cost and quality of the printing"],
-        "requirement_model":
-        {
-            "order_id": "order_08",
-            "domain": "additive_manufacturing",
-            "goal": "OrderPlan",
-            "mode": "manual",
-            "trigger": {
-                "condition": "OrderSubmited"
-            },
-            "order_properties": {
-                "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
-                    "unit": "meters"
-                },
-                "material": "Plastic",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "2",
+                        "range": "<=2",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -491,48 +653,157 @@
                     "delivery": 0.1,
                     "green": 0.1
                 }
-            }     
+            }
+       
+        
         }
-    
+    },
+    {
+        "sample_id":"s_08", 
+        "intent":["Print a concrete structure measuring 17×230×2 meters.",
+        "The delivery location is at  Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
+        "It must be delivered between February 14th, 2026 at 15:30 UTC and February 16th, 2026 at 15:30 UTC."],
+        "requirement_model":
+        {
+            "order_id": "order_08",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17, 230, 2],
+                    "hollow": "false",
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": {
+                    "after": {
+                        "type": "absolute",
+                        "date": {
+                            "value": "2026-02-14T15:30:00Z"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-16T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
+
+            },
+            "intent": {
+                "object_type": "",
+                "constraints": {
+                    "printing_duration": {
+                        "range": ">=0",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
+                    },
+                    "cost": {
+                        "range": ">=0",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+        }
     },
     {
         "sample_id":"s_09", 
-        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
-        "It must be delivered by February 14th, 2026 at 15:30 UTC."],
+        "intent":["Print a plastic hollow structure measuring 170×2300×20 centimeter.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "Use materials only from poland."],
         "requirement_model":
         {
             "order_id": "order_09",
             "domain": "additive_manufacturing",
             "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
             "mode": "manual",
             "trigger": {
                 "condition": "OrderSubmited"
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [17,230, 2],
-                    "hollow": true,
-                    "unit": "meters"
+                    "value": [170, 2300, 20],
+                    "hollow": "true",
+                    "unit": "centimeter"
                 },
-                "material": "Plastic",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
+                "material": "plastic",
+                "delivery_datetime": {
+                    "after": {
+                        "type": "relevant",
+                        "date": {
+                            "value": "0",
+                            "unit": "days"
+                        }
+                    },
+                    "before": {
+                        "type": "absolute",
+                        "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
 
             },
             "intent": {
+                "object_type": "",
                 "constraints": {
                     "printing_duration": {
-                        "range": "2",
+                        "range": ">=0",
                         "unit": "days"
                     },
                     "supplier": {
-                        "location": "europe",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
+                        "location": "Poland",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
                     },
                     "cost": {
-                        "range": "<=2000",
+                        "range": ">=0",
                         "unit": "€"
                     }
                 },
@@ -542,60 +813,11 @@
                     "delivery": 0.25,
                     "green": 0.25
                 }
-            }   
-        }
-    
-    },
-    {
-        "sample_id":"s_010", 
-        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
-        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
-        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
-        "Use materials only from poland."],
-        "requirement_model":
-        {
-            "order_id": "order_010",
-            "domain": "additive_manufacturing",
-            "goal": "OrderPlan",
-            "mode": "manual",
-            "trigger": {
-                "condition": "OrderSubmited"
-            },
-            "order_properties": {
-                "dimensions": {
-                    "value": [170,2300, 20],
-                    "hollow": true,
-                    "unit": "meters"
-                },
-                "material": "Plastic",
-                "delivery_datetime": "2026-02-14T15:30:00Z",
-                "location": [47.36739503728258, 8.539831281511814]
-
-            },
-            "intent": {
-                "constraints": {
-                    "printing_duration": {
-                        "range": "2",
-                        "unit": "days"
-                    },
-                    "supplier": {
-                        "location": "poland",
-                        "stability": ">=20%",
-                        "other_attributes": "more based on supplier metadata (KG)..."
-                    },
-                    "cost": {
-                        "range": "<=2000",
-                        "unit": "€"
-                    }
-                },
-                "preferences": {
-                    "quality": 0.25,
-                    "cost": 0.25,
-                    "delivery": 0.25,
-                    "green": 0.25
-                }
-            }   
+            }
+       
+        
         }
     }
+    
         
 ]
