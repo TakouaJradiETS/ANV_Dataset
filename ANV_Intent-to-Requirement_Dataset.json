@@ -1,0 +1,601 @@
+[
+    {
+        "sample_id":"s_00", 
+        "intent":["Print a concrete structure measuring 10×100×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC."],
+        "requirement_model":
+        {
+            "order_id": "order_01",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [10, 100, 2],
+                    "hollow": false,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "<=2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+        }
+    },
+    {
+        "sample_id":"s_01", 
+        "intent":["Print a hollow concrete structure measuring 10×100×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within two days.",
+        "The total cost must not exceed 2,000 euros.",
+        "The supplier must be located in Europe with a stability of at least 20%."],
+        "requirement_model":
+        {
+            "order_id": "order_01",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [10, 100, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "<=2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+        }
+    },
+    {
+        "sample_id":"s_02", 
+        "intent":["I want to print a hollow concrete structure measuring 17×230×2 meters.",
+        "The deliver it to : Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within two days.",
+        "The total cost must not exceed 2,000 euros.",
+        "The supplier must be located in Europe with a stability of at least 20%."],
+        "requirement_model":
+        {
+            "order_id": "order_02",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "<=2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+            }
+    },
+    {
+        "sample_id":"s_03", 
+        "intent":["Print a hollow concrete structure with the following mesures: 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing should be completed within 48 hours.",
+        "The total cost must be less than 2,000 euros.",
+        "I want a european supplier with stability of at least 20%."],
+        "requirement_model":
+        {
+            "order_id": "order_03",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "48",
+                        "unit": "hours"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+     
+        }
+    
+    },
+    {
+        "sample_id":"s_04", 
+        "intent":["Print a hollow concrete structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe with a stability of at least 20%.",
+        "Ensure the lowest possible cost for this printing"],
+        "requirement_model":
+        {
+            "order_id": "order_04",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.3,
+                    "cost": 0.5,
+                    "delivery": 0.1,
+                    "green": 0.1
+                }
+            }
+       
+        
+     
+        }
+    
+    },
+    {
+        "sample_id":"s_05", 
+        "intent":["Print a high quality hollow concrete structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe with a stability of at least 20%."],
+        "requirement_model":
+        {
+            "order_id": "order_05",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "concrete",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.5,
+                    "cost": 0.3,
+                    "delivery": 0.1,
+                    "green": 0.1
+                }
+            }
+       
+        
+     
+        }
+    
+    },
+    {
+        "sample_id":"s_06", 
+        "intent":["Print a hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe with a stability of at least 20%.",
+        "Use only recyclable materials"],
+        "requirement_model":
+        {
+            "order_id": "order_06",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "plastic",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.3,
+                    "cost": 0.1,
+                    "delivery": 0.1,
+                    "green": 0.5
+                }
+            }
+           
+        }
+    
+    },
+    {
+        "sample_id":"s_07", 
+        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe with a stability of at least 20%.",
+        "Use only recyclable materials"],
+        "requirement_model":
+        {
+            "order_id": "order_07",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "Plastic",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.3,
+                    "cost": 0.1,
+                    "delivery": 0.1,
+                    "green": 0.5
+                }
+            }
+        
+        }
+    
+    },
+    {
+        "sample_id":"s_08", 
+        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "The printing must be completed within 2 days.",
+        "The supplier must be located in Europe with a stability of at least 20%.",
+        "Ensure a good compromise between cost and quality of the printing"],
+        "requirement_model":
+        {
+            "order_id": "order_08",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "Plastic",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.4,
+                    "cost": 0.4,
+                    "delivery": 0.1,
+                    "green": 0.1
+                }
+            }     
+        }
+    
+    },
+    {
+        "sample_id":"s_09", 
+        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC."],
+        "requirement_model":
+        {
+            "order_id": "order_09",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [17,230, 2],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "Plastic",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "europe",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }   
+        }
+    
+    },
+    {
+        "sample_id":"s_010", 
+        "intent":["Print a plastic hollow structure measuring 17×230×2 meters.",
+        "The delivery location is at latitude 47.137726 and longitude 8.581627.",
+        "It must be delivered by February 14th, 2026 at 15:30 UTC.",
+        "Use materials only from poland."],
+        "requirement_model":
+        {
+            "order_id": "order_010",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [170,2300, 20],
+                    "hollow": true,
+                    "unit": "meters"
+                },
+                "material": "Plastic",
+                "delivery_datetime": "2026-02-14T15:30:00Z",
+                "location": [47.36739503728258, 8.539831281511814]
+
+            },
+            "intent": {
+                "constraints": {
+                    "printing_duration": {
+                        "range": "2",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "poland",
+                        "stability": ">=20%",
+                        "other_attributes": "more based on supplier metadata (KG)..."
+                    },
+                    "cost": {
+                        "range": "<=2000",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }   
+        }
+    }
+        
+]
