@@ -81,7 +81,7 @@
     },
     {
         "sample_id":"s_01", 
-        "intent":["Print a concrete house covering a footprint of 1,000 square meters and standing 2 meters tall.",
+        "intent":["I want to create a 3D house covering a footprint of 100 square meters and standing 2 meters tall.",
         "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within two days.",
@@ -99,7 +99,7 @@
             },
             "order_properties": {
                 "dimensions": {
-                    "value": [10, 100, 2],
+                    "value": [10, 10, 2],
                     "hollow": "true",
                     "unit": "meters"
                 },
@@ -164,7 +164,7 @@
     },
     {
         "sample_id":"s_02", 
-        "intent":["I want to print a hollow concrete structure measuring 17×230×2 meters.",
+        "intent":["Fabricate a hollow concrete structure measuring 17×230×2 meters.",
         "The deliver it to : Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
         "It must be delivered by February 14th, 2026 at 15:30 UTC.",
         "The printing must be completed within two days.",
@@ -771,6 +771,87 @@
                     "before": {
                         "type": "absolute",
                         "date": { "value": "2026-02-14T15:30:00Z" }
+                    }
+                },
+                "location": {
+                    "street_name": "Bahnhofstrasse",
+                    "street_number": "1",
+                    "zipcode": "8001",
+                    "region": "Zürich",
+                    "country": "Switzerland"
+                }
+
+            },
+            "intent": {
+                "object_type": "",
+                "constraints": {
+                    "printing_duration": {
+                        "range": ">=0",
+                        "unit": "days"
+                    },
+                    "supplier": {
+                        "location": "Poland",
+                        "material_cost": ">=0€",
+                        "delivery_reliability": ">=0%",
+                        "lead_time": ">=0d"
+                    },
+                    "material": {
+                        "printability": ">=0%",
+                        "strength": ">=0MPa",
+                        "certification": ">=0",
+                        "sustainability": ">=0",
+                        "recyclable": false
+                    },
+                    "cost": {
+                        "range": ">=0",
+                        "unit": "€"
+                    }
+                },
+                "preferences": {
+                    "quality": 0.25,
+                    "cost": 0.25,
+                    "delivery": 0.25,
+                    "green": 0.25
+                }
+            }
+       
+        
+        }
+    },
+    {
+        "sample_id":"s_010", 
+        "intent":["Print a plastic hollow structure measuring 170×2300×20 centimeter.",
+        "The delivery location is at Bahnhofstrasse 1, 8001 Zürich, Switzerland.",
+        "It must be delivered in 5 days from now.",
+        "Use materials only from poland."],
+        "requirement_model":
+        {
+            "order_id": "order_010",
+            "domain": "additive_manufacturing",
+            "goal": "OrderPlan",
+            "submission_date": "2026-02-01T15:30:00Z",
+            "mode": "manual",
+            "trigger": {
+                "condition": "OrderSubmited"
+            },
+            "order_properties": {
+                "dimensions": {
+                    "value": [170, 2300, 20],
+                    "hollow": "true",
+                    "unit": "centimeter"
+                },
+                "material": "plastic",
+                "delivery_datetime": {
+                    "after": {
+                        "type": "absolute",
+                        "date": {
+                            "value": "2026-02-01T15:30:00Z"
+                        }
+                    },
+                    "before": {
+                        "type": "relative",
+                        "date": { "value": "5", 
+                                "unit": "days"}
                     }
                 },
                 "location": {
